@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">CSI_App</string>
+    <string name="scan_not_working">Scan not working?</string>
+    <string name="first_time_user">First time user?</string>
+</resources>
