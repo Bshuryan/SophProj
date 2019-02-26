@@ -56,7 +56,7 @@ public class MainActivity extends AppCompatActivity {
 
     public void openForgotPassword(){
 
-        Intent intent = new Intent(this,ForgotPassword.class);
+        Intent intent = new Intent(this,UsernameCheck.class);
         startActivity(intent);
     }
 
@@ -80,3 +80,4 @@ public class MainActivity extends AppCompatActivity {
     }
 
 }
+

@@ -1,6 +1,7 @@
 package com.example.csi_app;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.*;
@@ -11,7 +12,7 @@ import com.google.zxing.MultiFormatWriter;
 import com.google.zxing.WriterException;
 import com.google.zxing.common.BitMatrix;
 
-public class newUserConfirm extends AppCompatActivity{
+public class newUserConfirm extends AppCompatActivity implements View.OnClickListener{
 
 
 
@@ -26,9 +27,18 @@ public class newUserConfirm extends AppCompatActivity{
         qrCode.setImageBitmap(b);
 
         Context context = getApplicationContext();
-        Toast new_user_welcome = Toast.makeText(context, "Welcome" +lastUser.username, Toast.LENGTH_LONG);
+        Toast new_user_welcome = Toast.makeText(context, "Welcome " +lastUser.username, Toast.LENGTH_LONG);
         new_user_welcome.show();
 
+        ImageButton user_home_button = (ImageButton)findViewById(R.id.user_confirm_home);
+        user_home_button.setOnClickListener(this);
+
+
+    }
+
+    public void onClick(View v)
+    {
+        startActivity(new Intent(newUserConfirm.this, MainActivity.class));
     }
 
 
@@ -37,3 +47,4 @@ public class newUserConfirm extends AppCompatActivity{
 
 
 }
+

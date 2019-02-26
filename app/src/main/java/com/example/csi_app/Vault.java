@@ -11,3 +11,4 @@ public class Vault extends AppCompatActivity {
         setContentView(R.layout.activity_vault);
     }
 }
+

@@ -36,51 +36,52 @@ public class FirstTimeUser extends AppCompatActivity {
 
 
 
-        public void onSubmit(View view)
-        {
-            tryCreateUser();
-        }
+    public void onSubmit(View view)
+    {
+        tryCreateUser();
+    }
+
     public void tryCreateUser()
     {
 
 
-                if (checkEmpty()) {
-                    Context context = getApplicationContext();
-                    Toast empty_field_error = Toast.makeText(context, "One or more fields are empty", Toast.LENGTH_LONG);
-                    empty_field_error.show();
-                } else if (sameUsername()) {
-                    Context context = getApplicationContext();
-                    Toast same_name_error = Toast.makeText(context, "Username already taken.", Toast.LENGTH_LONG);
-                    same_name_error.show();
-                } else if (!isValidEmail()){
-                    Context context = getApplicationContext();
-                    Toast invalid_email_error = Toast.makeText(context, "Invalid Email.", Toast.LENGTH_LONG);
-                    invalid_email_error.show();
-                }
+        if (checkEmpty()) {
+            Context context = getApplicationContext();
+            Toast empty_field_error = Toast.makeText(context, "One or more fields are empty", Toast.LENGTH_LONG);
+            empty_field_error.show();
+        } else if (sameUsername()) {
+            Context context = getApplicationContext();
+            Toast same_name_error = Toast.makeText(context, "Username already taken.", Toast.LENGTH_LONG);
+            same_name_error.show();
+        } else if (!isValidEmail()){
+            Context context = getApplicationContext();
+            Toast invalid_email_error = Toast.makeText(context, "Invalid Email.", Toast.LENGTH_LONG);
+            invalid_email_error.show();
+        }
 
-                else {
-                    EditText e0 = (EditText) findViewById(edit_text_ids[0]);
-                    String usn = e0.getText().toString();
+        else {
+            EditText e0 = (EditText) findViewById(edit_text_ids[0]);
+            String usn = e0.getText().toString();
 
-                    EditText e1 = (EditText) findViewById(edit_text_ids[1]);
-                    String securityQuestion = e1.getText().toString();
+            EditText e1 = (EditText) findViewById(edit_text_ids[1]);
+            String securityQuestion = e1.getText().toString();
 
-                    EditText e2 = (EditText) findViewById(edit_text_ids[2]);
-                    String securityAnswer = e2.getText().toString();
+            EditText e2 = (EditText) findViewById(edit_text_ids[2]);
+            String securityAnswer = e2.getText().toString();
 
-                    EditText e3 = (EditText) findViewById(edit_text_ids[3]);
-                    String emailAddress = e3.getText().toString();
-
-
-
-                    User u = new User(usn, securityQuestion, securityAnswer, emailAddress);
-                    User.accounts.add(u);
-                    u.generateQR();
-
-                    startActivity(new Intent(FirstTimeUser.this, newUserConfirm.class));
+            EditText e3 = (EditText) findViewById(edit_text_ids[3]);
+            String emailAddress = e3.getText().toString();
 
 
-                }
+
+            User u = new User(usn, securityQuestion, securityAnswer, emailAddress);
+            User.accounts.add(u);
+            u.generateQR();
+
+            startActivity(new Intent(FirstTimeUser.this, newUserConfirm.class));
+
+
+        }
 
 
 
@@ -145,3 +146,4 @@ public class FirstTimeUser extends AppCompatActivity {
 
 
 }
+

@@ -12,9 +12,9 @@ import com.journeyapps.barcodescanner.BarcodeEncoder;
 import java.util.LinkedList;
 
 
-public class User {  //has to be abstract? if not working change to abstract
-//test
+public class User {
 
+    static User currentUser;
     static LinkedList<User> accounts = new LinkedList<User>();
 
     String email_address;
@@ -23,10 +23,7 @@ public class User {  //has to be abstract? if not working change to abstract
     String security_answer;
     Bitmap QR;
 
-    int i = 0;
-
-    public User(String username, String security_question, String security_answer, String email_address)
-    {
+    public User(String username, String security_question, String security_answer, String email_address) {
         this.email_address = email_address;
         this.username = username;
         this.security_question = security_question;
@@ -34,8 +31,7 @@ public class User {  //has to be abstract? if not working change to abstract
         QR = null;
     }
 
-    public User()
-    {
+    public User() {
         email_address = null;
         username = null;
         security_answer = null;
@@ -43,81 +39,80 @@ public class User {  //has to be abstract? if not working change to abstract
         QR = null;
     }
 
-    public String getUsername()
-    {
+    public String getUsername() {
         return username;
     }
 
-    public String getEmail_address()
-    {
+    public String getEmail_address() {
         return email_address;
     }
 
-    public String getSecurity_question()
-    {
+    public String getSecurity_question() {
         return security_question;
     }
 
-    public String getSecurity_answer()
-    {
+    public String getSecurity_answer() {
         return security_answer;
     }
 
-    public Bitmap getQR() { return QR; }
+    public Bitmap getQR() {
+        return QR;
+    }
 
-    public void setUsername(String s)
-    {
+    public void setUsername(String s) {
         username = s;
     }
 
-    public void setEmailAddress(String s)
-    {
+    public void setEmailAddress(String s) {
         email_address = s;
     }
 
-    public void setSecurityQuestion(String s)
-    {
+    public void setSecurityQuestion(String s) {
         security_question = s;
     }
 
-    public void setSecurityAnswer(String s)
-    {
+    public void setSecurityAnswer(String s) {
         security_answer = s;
     }
 
-    public LinkedList<User> getAccounts()
-    {
+    public LinkedList<User> getAccounts() {
         return accounts;
     }
 
-    public void setQR(Bitmap b) { QR = b; }
+    public void setQR(Bitmap b) {
+        QR = b;
+    }
 
 
-    public void generateQR(){
+    public void generateQR() {
         Bitmap bMap; //encoded barcode image (1D)- cannot display a 2D image
         BitMatrix bMatrix; //encoded barcode image (2D)
         MultiFormatWriter multiFormatWriter = new MultiFormatWriter();
         try {
 
             bMatrix = multiFormatWriter.encode("This is a test", BarcodeFormat.QR_CODE, 350, 350);
-            BarcodeEncoder barEncoder= new BarcodeEncoder();
+            BarcodeEncoder barEncoder = new BarcodeEncoder();
             bMap = barEncoder.createBitmap(bMatrix);
             this.setQR(bMap);
 
 
-        }
-        catch (WriterException e) {
+        } catch (WriterException e) {
             e.getCause();
         }
 
 
     }
 
+    public static User searchUsn(String s) {
+        for (User temp : User.accounts) {
+            boolean b = s.equalsIgnoreCase(temp.username);
+            if (b) {
+                return temp;
+            }
+        }
+
+        return null;
 
 
-
-
-
-
-
+    }
 }
