@@ -13,9 +13,9 @@ import java.util.LinkedList;
 
 
 public class User {  //has to be abstract? if not working change to abstract
+//test
 
-
-    static LinkedList<User> accounts = new LinkedList<User>(); //the barber is drunk
+    static LinkedList<User> accounts = new LinkedList<User>();
 
     String email_address;
     String username;
