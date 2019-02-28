@@ -15,12 +15,4 @@
         tools:layout_editor_absoluteX="63dp"
         tools:layout_editor_absoluteY="218dp" />
 
-    <TextView
-        android:id="@+id/settings"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Settings"
-        tools:layout_editor_absoluteX="16dp"
-        tools:layout_editor_absoluteY="696dp" />
-
 </android.support.constraint.ConstraintLayout>
