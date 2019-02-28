@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/CSI_App.iml" filepath="$PROJECT_DIR$/CSI_App.iml" />
+      <module fileurl="file://$PROJECT_DIR$/SophProj.iml" filepath="$PROJECT_DIR$/SophProj.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
     </modules>
   </component>
