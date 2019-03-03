@@ -51,13 +51,18 @@ public class FirstTimeUser extends AppCompatActivity {
             empty_field_error.show();
         } else if (sameUsername()) {
             Context context = getApplicationContext();
-            Toast same_name_error = Toast.makeText(context, "Username already taken.", Toast.LENGTH_LONG);
+            Toast same_name_error = Toast.makeText(context, "Username already taken", Toast.LENGTH_LONG);
             same_name_error.show();
         } else if (!isValidEmail()){
             Context context = getApplicationContext();
-            Toast invalid_email_error = Toast.makeText(context, "Invalid Email.", Toast.LENGTH_LONG);
+            Toast invalid_email_error = Toast.makeText(context, "Invalid Email", Toast.LENGTH_LONG);
             invalid_email_error.show();
+        } else if(User.accounts.size() >= 3){
+            Context context = getApplicationContext();
+            Toast too_many_users_error = Toast.makeText(context, "Maximum of 3 users", Toast.LENGTH_LONG);
+            too_many_users_error.show();
         }
+
 
         else {
             EditText e0 = (EditText) findViewById(edit_text_ids[0]);

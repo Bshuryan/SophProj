@@ -9,12 +9,14 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Settings"></activity>
+        <activity android:name=".Vault3"></activity>
+        <activity android:name=".Vault2" />
+        <activity android:name=".Settings" />
         <activity android:name=".UsernameCheck" />
         <activity android:name=".Vault" />
         <activity android:name=".newUserConfirm" />
         <activity android:name=".FirstTimeUser" />
-        <activity android:name=".ForgotPassword" />
+        <activity android:name=".SecurityQuestion" />
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

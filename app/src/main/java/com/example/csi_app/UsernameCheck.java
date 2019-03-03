@@ -39,7 +39,7 @@ public class UsernameCheck extends AppCompatActivity implements View.OnClickList
                 User.currentUser = User.searchUsn(usn);
 
                 if (User.currentUser != null) {
-                    startActivity(new Intent(UsernameCheck.this, ForgotPassword.class));
+                    startActivity(new Intent(UsernameCheck.this, SecurityQuestion.class));
                 } else {
                     Context context = getApplicationContext();
                     Toast unknown_usn = Toast.makeText(context, "Username not found.", Toast.LENGTH_LONG);

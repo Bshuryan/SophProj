@@ -10,7 +10,7 @@ import android.widget.Toast;
 import android.widget.ImageButton;
 import android.view.View;
 
-public class ForgotPassword extends AppCompatActivity implements View.OnClickListener{
+public class SecurityQuestion extends AppCompatActivity implements View.OnClickListener{
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,8 +37,24 @@ public class ForgotPassword extends AppCompatActivity implements View.OnClickLis
                 EditText securityAnswer = (EditText) findViewById(R.id.securityA);
                 String myAnswer = securityAnswer.getText().toString();
 
-                if (myAnswer.equalsIgnoreCase(User.currentUser.getSecurity_answer()))
-                    startActivity(new Intent(ForgotPassword.this, Vault.class));
+                if (myAnswer.equalsIgnoreCase(User.currentUser.getSecurity_answer())) {
+
+                    int id = User.currentUser.getId();
+
+                    if(id == 1)
+                    {
+                        startActivity(new Intent(SecurityQuestion.this, Vault.class));
+                    }
+
+                    else if(id == 2)
+                    {
+                        startActivity(new Intent(SecurityQuestion.this, Vault2.class));
+                    }
+
+                    else
+                        startActivity(new Intent(SecurityQuestion.this, Vault3.class));
+
+                }
                 else {
 
                     Context context = getApplicationContext();
@@ -49,7 +65,7 @@ public class ForgotPassword extends AppCompatActivity implements View.OnClickLis
                 break;
 
             case R.id.security_home:
-                startActivity(new Intent(ForgotPassword.this, MainActivity.class));
+                startActivity(new Intent(SecurityQuestion.this, MainActivity.class));
                 break;
 
 

@@ -1,5 +1,6 @@
 package com.example.csi_app;
 
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.support.v7.app.AppCompatActivity;
 
@@ -22,6 +23,7 @@ public class User {
     String security_question;
     String security_answer;
     Bitmap QR;
+    int id;
 
     public User(String username, String security_question, String security_answer, String email_address) {
         this.email_address = email_address;
@@ -29,6 +31,7 @@ public class User {
         this.security_question = security_question;
         this.security_answer = security_answer;
         QR = null;
+        id = User.accounts.size() + 1;
     }
 
     public User() {
@@ -59,6 +62,10 @@ public class User {
         return QR;
     }
 
+    public int getId() {
+        return id;
+    }
+
     public void setUsername(String s) {
         username = s;
     }
@@ -74,6 +81,7 @@ public class User {
     public void setSecurityAnswer(String s) {
         security_answer = s;
     }
+
 
     public LinkedList<User> getAccounts() {
         return accounts;
@@ -116,3 +124,5 @@ public class User {
 
     }
 }
+
+
