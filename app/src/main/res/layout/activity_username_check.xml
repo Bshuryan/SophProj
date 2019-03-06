@@ -4,7 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".UsernameCheck">
+    android:background="@drawable/gradient"
+    tools:context=".UsernameCheck"
+    tools:targetApi="@android:color/holo_blue_dark">
 
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/usn_check_home"
@@ -35,6 +37,7 @@
         android:layout_marginRight="139dp"
         android:layout_marginBottom="508dp"
         android:text="Enter your username"
+        android:textColor="@android:color/darker_gray"
         android:textSize="25dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
