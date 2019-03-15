@@ -16,7 +16,7 @@ public class Vault3 extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_vault3);
 
-        settingsButton = (ImageButton)findviewbyID(R.id.settingsButton3);
+        settingsButton = (ImageButton)findViewById(R.id.settingsButton3);
         settingsButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

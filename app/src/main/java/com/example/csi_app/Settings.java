@@ -16,24 +16,24 @@ public class Settings extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_settings);
 
-        TextView username = (TextView) findViewbyId(R.id.username);
+        TextView username = (TextView) findViewById(R.id.username);
         username.setText(User.currentUser.getUsername());
         /*
         TextView password = (TextView) findViewbyId(R.id.password);
         password.setText(User.currentUser.getPassword());
         */
-        TextView email = (TextView) findViewbyId(R.id.email);
+        TextView email = (TextView) findViewById(R.id.email);
         email.setText(User.currentUser.getEmail_address());
 
-        TextView question = (TextView) findViewbyId(R.id.securityQuestion);
+        TextView question = (TextView) findViewById(R.id.securityQuestion);
         question.setText(User.currentUser.getSecurity_question());
 
-        TextView answer = (TextView) findViewbyId(R.id.securityAnswer);
+        TextView answer = (TextView) findViewById(R.id.securityAnswer);
         answer.setText(User.currentUser.getSecurity_answer());
 
-        Button updateBtn = (Button) findViewbyId(R.id.updateBtn);
+        Button updateBtn = (Button) findViewById(R.id.updateBtn);
 
-        Button deleteBtn = (Button) findViewbyId(R.id.deleteBtn);
+        Button deleteBtn = (Button) findViewById(R.id.deleteBtn);
 
 
 
