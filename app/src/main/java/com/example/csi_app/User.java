@@ -24,7 +24,8 @@ public class User {
     String security_answer;
     Bitmap QR;
     int id;
-    String[] fileNames;
+    String[] filePaths1,filePaths2, filePaths3;
+    int manyFiles;
 
     public User(String username, String security_question, String security_answer, String email_address) {
         this.email_address = email_address;
@@ -33,7 +34,17 @@ public class User {
         this.security_answer = security_answer;
         QR = null;
         id = User.accounts.size() + 1;
-        fileNames = new String[15];
+        if(id == 1) {
+            filePaths1 = new String[15];
+        }
+        else if(id== 2){
+            filePaths2 = new String[15];
+        }
+
+        else
+            filePaths3 = new String[15];
+        manyFiles = 0;
+
     }
 
     public User() {
