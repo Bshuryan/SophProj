@@ -81,12 +81,15 @@ public class Vault extends AppCompatActivity implements View.OnClickListener {
         if(requestCode== 101 && resultCode == RESULT_OK && data!=null){
 
             nameFile.setView(nameOfFile);
+            Uri u = data.getData();
+            String pathname = u.getPath();
 
             nameFile.setMessage("Please choose a file name").setCancelable(false)
                     .setPositiveButton("Confirm", new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
                             filename = nameOfFile.getText().toString();
+
                         }
                     })
                     .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
@@ -96,12 +99,8 @@ public class Vault extends AppCompatActivity implements View.OnClickListener {
                         }
                     });
 
-            //AlertDialog finalName = nameFile.create();
             nameFile.show();
 
-
-            Uri u = data.getData();
-            String pathname = u.getPath();
 
 
             if(User.currentUser.manyFiles >= 15)
@@ -113,6 +112,7 @@ public class Vault extends AppCompatActivity implements View.OnClickListener {
            else {
                User.currentUser.filePaths1[User.currentUser.manyFiles] = pathname;
                User.currentUser.manyFiles++;
+               storeFile(pathname,filename);
            }
 
 
