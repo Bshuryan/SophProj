@@ -9,8 +9,8 @@
 
     <TextView
         android:id="@+id/textView2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="210dp"
+        android:layout_height="27dp"
         android:layout_marginStart="32dp"
         android:layout_marginLeft="32dp"
         android:layout_marginTop="172dp"
@@ -18,10 +18,13 @@
         android:layout_marginRight="240dp"
         android:layout_marginBottom="540dp"
         android:text="Enter Username Here."
+        android:textColor="@android:color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.75" />
 
     <EditText
         android:id="@+id/editText1"
@@ -50,6 +53,7 @@
         android:layout_marginTop="264dp"
         android:layout_marginBottom="448dp"
         android:text="Enter Security Question Here."
+        android:textColor="@android:color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -83,6 +87,7 @@
         android:layout_marginRight="142dp"
         android:layout_marginBottom="356dp"
         android:text="Enter Security Question Answer Here."
+        android:textColor="@android:color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -113,6 +118,7 @@
         android:layout_marginBottom="628dp"
         android:text="First Time User"
         android:textSize="32dp"
+        android:textColor="@android:color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
@@ -148,6 +154,7 @@
         android:layout_marginRight="202dp"
         android:layout_marginBottom="269dp"
         android:text="Enter a valid email address."
+        android:textColor="@android:color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

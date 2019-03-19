@@ -33,16 +33,18 @@
         android:layout_marginStart="40dp"
         android:layout_marginLeft="40dp"
         android:layout_marginTop="189dp"
-        android:layout_marginEnd="139dp"
+        android:layout_marginEnd="100dp"
         android:layout_marginRight="139dp"
         android:layout_marginBottom="508dp"
         android:text="Enter your username"
-        android:textColor="@android:color/darker_gray"
+        android:textColor="@android:color/white"
         android:textSize="25dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0" />
 
     <EditText
         android:id="@+id/editText6"
@@ -51,7 +53,7 @@
         android:layout_marginStart="40dp"
         android:layout_marginLeft="40dp"
         android:layout_marginTop="223dp"
-        android:layout_marginEnd="70dp"
+        android:layout_marginEnd="69dp"
         android:layout_marginRight="70dp"
         android:layout_marginBottom="453dp"
         android:ems="10"
@@ -88,6 +90,7 @@
         android:clickable="false"
         android:text="Next"
         android:textSize="18dp"
+        android:textColor="@android:color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
