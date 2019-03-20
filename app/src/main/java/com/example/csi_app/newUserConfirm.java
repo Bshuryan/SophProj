@@ -33,7 +33,7 @@ public class newUserConfirm extends AppCompatActivity implements View.OnClickLis
         ImageButton user_home_button = (ImageButton)findViewById(R.id.user_confirm_home);
         user_home_button.setOnClickListener(this);
 
-     
+
     }
 
     public void onClick(View v)
