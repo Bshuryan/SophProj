@@ -39,7 +39,7 @@
         app:layout_constraintBottom_toTopOf="@+id/edit_email"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.866"
-        app:layout_constraintStart_toEndOf="@+id/change_username"
+        app:layout_constraintStart_toEndOf="@+id/changeUsername"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_chainStyle="spread_inside" />
 
@@ -58,7 +58,7 @@
         app:layout_constraintBottom_toTopOf="@+id/edit_password"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.901"
-        app:layout_constraintStart_toEndOf="@+id/change_email" />
+        app:layout_constraintStart_toEndOf="@+id/changeEmail" />
 
     <EditText
         android:id="@+id/edit_password"
@@ -114,7 +114,7 @@
         app:layout_constraintVertical_bias="0.109" />
 
     <Button
-        android:id="@+id/delete_btn"
+        android:id="@+id/deleteBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
@@ -134,11 +134,11 @@
         android:layout_height="17dp"
         android:layout_marginTop="8dp"
         android:text="UsernameHere"
-        app:layout_constraintTop_toBottomOf="@+id/change_username"
+        app:layout_constraintTop_toBottomOf="@+id/changeUsername"
         tools:layout_editor_absoluteX="20dp" />
 
     <CheckBox
-        android:id="@+id/change_username"
+        android:id="@+id/changeUsername"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
@@ -148,7 +148,7 @@
         tools:layout_editor_absoluteY="136dp" />
 
     <CheckBox
-        android:id="@+id/change_email"
+        android:id="@+id/changeEmail"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Email"
@@ -164,7 +164,7 @@
         tools:layout_editor_absoluteY="253dp" />
 
     <CheckBox
-        android:id="@+id/change_password"
+        android:id="@+id/changePassword"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Password"
@@ -172,7 +172,7 @@
         tools:layout_editor_absoluteY="289dp" />
 
     <CheckBox
-        android:id="@+id/change_question"
+        android:id="@+id/changeQuestion"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Security Question"
@@ -188,7 +188,7 @@
         tools:layout_editor_absoluteY="334dp" />
 
     <TextView
-        android:id="@+id/security_question"
+        android:id="@+id/securityQuestion"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Security Question Here"
@@ -196,7 +196,7 @@
         tools:layout_editor_absoluteY="415dp" />
 
     <TextView
-        android:id="@+id/security_answer"
+        android:id="@+id/securityAnswer"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Security Answer Here"
@@ -204,7 +204,7 @@
         tools:layout_editor_absoluteY="495dp" />
 
     <CheckBox
-        android:id="@+id/change_answer"
+        android:id="@+id/changeAnswer"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Security Answer"
@@ -212,7 +212,7 @@
         tools:layout_editor_absoluteY="450dp" />
 
     <Button
-        android:id="@+id/update_btn"
+        android:id="@+id/updateBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Update"
