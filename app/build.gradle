@@ -29,4 +29,5 @@ dependencies {
     implementation 'com.google.zxing:core:3.2.1'
     implementation 'com.journeyapps:zxing-android-embedded:3.2.0@aar'
     android.defaultConfig.vectorDrawables.useSupportLibrary = true
+    implementation 'com.google.android.gms:play-services-vision:15.0.2'
 }
