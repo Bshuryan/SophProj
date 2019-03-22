@@ -98,7 +98,7 @@ public class CamScan extends AppCompatActivity {
                         @Override
                         public void run() {
                             String s = codes.valueAt(0).displayValue;
-                            info.setText(s);
+                            info.setText("Welcome " +s);
 
                             User u = User.searchUsn(s);
 

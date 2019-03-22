@@ -111,5 +111,11 @@ public class MainActivity extends AppCompatActivity {
         Intent i2 = new Intent(this, FirstTimeUser.class);
         startActivity(i2);
     }
+
+    public void openCamScan(View v)
+    {
+        Intent i = new Intent(this, CamScan.class);
+        startActivity(i);
+    }
 }
 
