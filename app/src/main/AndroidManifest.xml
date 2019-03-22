@@ -21,6 +21,7 @@
         <activity android:name=".newUserConfirm" />
         <activity android:name=".FirstTimeUser" />
         <activity android:name=".SecurityQuestion" />
+        <activity android:name=".CamScan" />
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

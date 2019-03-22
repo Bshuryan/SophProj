@@ -27,7 +27,7 @@ import android.provider.MediaStore;
 import android.widget.ImageView;
 
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
     static final int REQUEST_IMAGE_CAPTURE = 1;
     private Bitmap mImageBitmap;
@@ -42,6 +42,9 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        Button cam = (Button)findViewById(R.id.button2);
+        cam.setOnClickListener(this);
     }
 
     public void openCamera(View view) {
@@ -112,10 +115,15 @@ public class MainActivity extends AppCompatActivity {
         startActivity(i2);
     }
 
-    public void openCamScan(View v)
+    /*public void openCamScan(View view)
     {
         Intent i = new Intent(this, CamScan.class);
         startActivity(i);
+    }*/
+
+    public void onClick(View v){
+
+        startActivity(new Intent(this, CamScan.class));
     }
 }
 
