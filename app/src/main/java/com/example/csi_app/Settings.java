@@ -111,6 +111,6 @@ public class Settings extends AppCompatActivity {
                     public void onClick(DialogInterface dialog, int which) {
                         //remove account
                     }
-                })
+                });
     }
 }

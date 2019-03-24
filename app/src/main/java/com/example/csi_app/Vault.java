@@ -112,7 +112,7 @@ public class Vault extends AppCompatActivity implements View.OnClickListener {
            else {
                User.currentUser.filePaths1[User.currentUser.manyFiles] = pathname;
                User.currentUser.manyFiles++;
-               storeFile(pathname,filename);
+              // storeFile(pathname,filename);
            }
 
 

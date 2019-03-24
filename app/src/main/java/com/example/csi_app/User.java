@@ -130,16 +130,18 @@ public class User {
     }
 
     public static User searchUsn(String s) {
+
+        User target = null;
         for (User temp : User.accounts) {
             boolean b = s.equalsIgnoreCase(temp.username);
             if (b) {
-                return temp;
+                target = temp;
+                break;
+
             }
+
         }
-
-        return null;
-
-
+        return target;
     }
 }
 

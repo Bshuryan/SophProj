@@ -36,9 +36,10 @@ public class UsernameCheck extends AppCompatActivity implements View.OnClickList
 
                 EditText t = (EditText) findViewById(R.id.editText6);
                 usn = t.getText().toString();
-                User.currentUser = User.searchUsn(usn);
+                User target = User.searchUsn(usn);
 
-                if (User.currentUser != null) {
+                if (target != null) {
+                    User.currentUser = target;
                     startActivity(new Intent(UsernameCheck.this, SecurityQuestion.class));
                 } else {
                     Context context = getApplicationContext();

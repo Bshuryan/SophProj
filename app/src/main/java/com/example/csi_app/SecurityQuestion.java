@@ -17,15 +17,7 @@ public class SecurityQuestion extends AppCompatActivity implements View.OnClickL
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_forgot_password);
 
-        String sQuestion = User.currentUser.getSecurity_question();
-        TextView securityQuestion = (TextView)findViewById(R.id.securityQ);
-        securityQuestion.setText(sQuestion);
-
-        ImageButton security_button = (ImageButton)findViewById(R.id.scan_check_button);
-        security_button.setOnClickListener(this);
-
-        ImageButton home_button = (ImageButton)findViewById(R.id.security_home);
-        home_button.setOnClickListener(this);
+        showSecurityQuestion();
 
 
     }
@@ -70,6 +62,19 @@ public class SecurityQuestion extends AppCompatActivity implements View.OnClickL
 
 
         }
+    }
+
+    public void showSecurityQuestion(){
+
+        String sQuestion = User.currentUser.getSecurity_question();
+        TextView securityQuestion = (TextView)findViewById(R.id.securityQ);
+        securityQuestion.setText(sQuestion);
+
+        ImageButton security_button = (ImageButton)findViewById(R.id.scan_check_button);
+        security_button.setOnClickListener(this);
+
+        ImageButton home_button = (ImageButton)findViewById(R.id.security_home);
+        home_button.setOnClickListener(this);
     }
 
 
