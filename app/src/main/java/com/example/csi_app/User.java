@@ -22,6 +22,7 @@ public class User {
     String username;
     String security_question;
     String security_answer;
+    String password;
     Bitmap QR;
     int id;
     String[] filePaths1,filePaths2, filePaths3;
@@ -59,6 +60,8 @@ public class User {
         return username;
     }
 
+    public String getPassword() { return password; }
+
     public String getEmail_address() {
         return email_address;
     }
@@ -82,6 +85,8 @@ public class User {
     public void setUsername(String s) {
         username = s;
     }
+
+    public void setPassword(String s) { password = s; }
 
     public void setEmailAddress(String s) {
         email_address = s;
