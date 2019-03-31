@@ -14,8 +14,12 @@ import android.widget.Toast;
 import android.content.Context;
 import java.io.File;
 import android.app.AlertDialog.*;
+
+import org.apache.commons.io.FileUtils;
+
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
+import java.io.IOException;
 
 public class Vault extends AppCompatActivity implements View.OnClickListener {
 
@@ -110,11 +114,20 @@ public class Vault extends AppCompatActivity implements View.OnClickListener {
                too_many_files_error.show();
            }
            else {
-               User.currentUser.filePaths1[User.currentUser.manyFiles] = pathname;
-               User.currentUser.manyFiles++;
-              // storeFile(pathname,filename);
-           }
+                User.currentUser.filePaths1[User.currentUser.manyFiles] = pathname;
+                User.currentUser.manyFiles++;
 
+                try {
+                    storeFile(pathname, filename);
+                }
+                catch(IOException e)
+                {
+                    e.printStackTrace();
+                }
+
+
+
+            }
 
 
         }
@@ -128,21 +141,18 @@ public class Vault extends AppCompatActivity implements View.OnClickListener {
     }
 
 
-    public void storeFile(String path, String filename){
+    public void storeFile(String path, String filename) throws IOException{
 
-        try {
-            FileOutputStream output = openFileOutput(path, MODE_APPEND);
+
+            FileOutputStream output = openFileOutput(filename, MODE_APPEND);
+
+            File file = new File(path);
+            byte[] data = FileUtils.readFileToByteArray(file);
+            output.write(data);
+            output.close();
+
+            Toast.makeText(getApplicationContext(), "File saved to "+ getFilesDir()+"/"+filename, Toast.LENGTH_LONG).show();
         }
-
-        catch (FileNotFoundException e) {
-            Context context = getApplicationContext();
-            Toast file_not_found = Toast.makeText(context, "ERROR: File not found", Toast.LENGTH_LONG);
-            file_not_found.show();
-        }
-
-        File file = new File(path);
-        //byte[] data = new byte[];
-    }
 }
 
 
