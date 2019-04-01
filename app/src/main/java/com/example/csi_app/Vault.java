@@ -82,7 +82,7 @@ public class Vault extends AppCompatActivity implements View.OnClickListener {
 
         final EditText nameOfFile = new EditText(Vault.this);
 
-        if(requestCode== 101 && resultCode == RESULT_OK && data!=null){
+        if(requestCode== 101 && resultCode == RESULT_OK && data!=null) {
 
             nameFile.setView(nameOfFile);
             Uri u = data.getData();
@@ -114,7 +114,7 @@ public class Vault extends AppCompatActivity implements View.OnClickListener {
                too_many_files_error.show();
            }
            else {
-                User.currentUser.filePaths1[User.currentUser.manyFiles] = pathname;
+                User.currentUser.fileNames[User.currentUser.manyFiles] = filename;
                 User.currentUser.manyFiles++;
 
                 try {
@@ -153,6 +153,18 @@ public class Vault extends AppCompatActivity implements View.OnClickListener {
 
             Toast.makeText(getApplicationContext(), "File saved to "+ getFilesDir()+"/"+filename, Toast.LENGTH_LONG).show();
         }
+
+        public void getFileList(){
+
+            String[] myFiles = User.currentUser.fileNames;
+
+
+            //add filenames to drop-down menu
+            //on click of one of the options it should get the text and open the file
+            //openFileInput(INSERT FILENAME HERE);
+        }
+
+
 }
 
 

@@ -4,6 +4,7 @@ import android.Manifest;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Camera;
+import android.os.Build;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
@@ -13,6 +14,7 @@ import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 import android.widget.TextView;
 import android.widget.Button;
+import android.widget.Toast;
 
 
 import com.google.android.gms.vision.CameraSource;
@@ -39,7 +41,7 @@ public class CamScan extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cam_scan);
 
-        reqCam();
+        //reqCam();
 
 
         setCam();
@@ -57,8 +59,8 @@ public class CamScan extends AppCompatActivity {
 
 
                 liveCam = (SurfaceView) findViewById(R.id.liveCam);
-                barcodeDetector = new BarcodeDetector.Builder(this).setBarcodeFormats(Barcode.QR_CODE).build();
-                cam = new CameraSource.Builder(this, barcodeDetector).build();
+                barcodeDetector = new BarcodeDetector.Builder(CamScan.this).setBarcodeFormats(Barcode.QR_CODE).build();
+                cam = new CameraSource.Builder(this, barcodeDetector).setRequestedPreviewSize(1920,1080).build();
                 info = (TextView) findViewById(R.id.encoded);
 
 
@@ -76,7 +78,7 @@ public class CamScan extends AppCompatActivity {
                     @Override
                     public void surfaceCreated(SurfaceHolder holder) {
                         try {
-                            if (ActivityCompat.checkSelfPermission(getApplicationContext(), Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
+                            if (ActivityCompat.checkSelfPermission(getApplicationContext(), Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED && Build.VERSION.SDK_INT > 22) {
                                 // TODO: Consider calling
                                 //    ActivityCompat#requestPermissions
                                 // here to request the missing permissions, and then overriding
@@ -85,10 +87,15 @@ public class CamScan extends AppCompatActivity {
                                 // to handle the case where the user grants the permission. See the documentation
                                 // for ActivityCompat#requestPermissions for more details.
 
+                                requestPermissions(new String[]{Manifest.permission.CAMERA}, 1);
+
                                 return;
                             }
 
-                            cam.start(liveCam.getHolder());
+                            else {
+
+                                cam.start(liveCam.getHolder());
+                            }
 
                         } catch (IOException e) {
                             e.printStackTrace();
@@ -99,7 +106,7 @@ public class CamScan extends AppCompatActivity {
                     @Override
                     public void surfaceChanged(SurfaceHolder holder, int format, int width, int height) {
 
-                        //unsure how to implement atm, will come back if problems
+
 
                     }
 
@@ -163,7 +170,14 @@ public class CamScan extends AppCompatActivity {
         public void reqCam(){
 
             if(ContextCompat.checkSelfPermission(this.getApplicationContext(), Manifest.permission.CAMERA) == PackageManager.PERMISSION_DENIED){
-                requestPermissions(new String[]{Manifest.permission.CAMERA} , 100);
+                if(Build.VERSION.SDK_INT < 23){
+                    Toast not_supported = Toast.makeText(this.getApplicationContext(), "Error: Must have SDK version 23 or higher!", Toast.LENGTH_LONG);
+                    not_supported.show();
+                }
+
+                else {
+                    requestPermissions(new String[]{Manifest.permission.CAMERA}, 1);
+                }
 
             }
         }
