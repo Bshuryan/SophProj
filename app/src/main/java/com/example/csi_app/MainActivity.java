@@ -1,30 +1,21 @@
 package com.example.csi_app;
 
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.net.Uri;
-import android.os.Environment;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.os.Environment;
+import android.provider.MediaStore;
+import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
-import android.view.TextureView;
 import android.view.View;
-import android.content.Intent;
 import android.widget.Button;
-
-import com.google.zxing.BarcodeFormat;
-import com.google.zxing.MultiFormatWriter;
-import com.google.zxing.WriterException;
-import com.google.zxing.common.BitMatrix;
+import android.widget.ImageView;
 
 import java.io.File;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.LinkedList;
-
-import android.graphics.Bitmap;
-import android.provider.MediaStore;
-import android.widget.ImageView;
 
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
