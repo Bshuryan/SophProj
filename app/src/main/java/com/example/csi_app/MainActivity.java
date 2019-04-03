@@ -39,10 +39,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private String body;
     private EditText recipient;
 
-    //Testing
-    //test1
-//test3
-//test2
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -155,11 +152,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         startActivity(i2);
     }
 
-    /*public void openCamScan(View view)
-    {
-        Intent i = new Intent(this, CamScan.class);
-        startActivity(i);
-    }*/
+
 
     public void onClick(View v) {
 

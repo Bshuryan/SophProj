@@ -15,11 +15,6 @@ import android.view.SurfaceView;
 import android.widget.TextView;
 import android.widget.Button;
 import android.widget.Toast;
-import java.util.ArrayList;
-import android.app.AlertDialog;
-import android.content.DialogInterface;
-
-
 
 
 import com.google.android.gms.vision.CameraSource;
@@ -43,14 +38,13 @@ public class CamScan extends AppCompatActivity {
     TextView info;
     private String[] neededPermissions = new String[]{CAMERA};
     boolean hasPerm = false;
+    String s;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cam_scan);
 
-
-        //if(checkPermission()) {
 
            setCam();
            openCam();
@@ -142,24 +136,39 @@ public class CamScan extends AppCompatActivity {
                             info.post(new Runnable() {
                                 @Override
                                 public void run() {
-                                    String s = codes.valueAt(0).displayValue;
-                                    info.setText("Welcome " +s);
+                                    s = codes.valueAt(0).displayValue;
+                                    info.setText("Welcome " + s);
 
-                                    User u = User.searchUsn(s);
 
-                                    if (u != null) {
+                                   User u = User.searchUsn(s);
+
+
+                                   if (u != null) {
+
+
                                         User.currentUser = u;
                                         int id = User.currentUser.getId();
 
                                         if (id == 1) {
-                                            startActivity(new Intent(CamScan.this, Vault.class));
+                                           startActivity(new Intent(CamScan.this, Vault.class));
                                         } else if (id == 2) {
                                             startActivity(new Intent(CamScan.this, Vault2.class));
                                         } else
                                             startActivity(new Intent(CamScan.this, Vault3.class));
-                                    }
+                                   }
                                 }
-                            });} }});}
+                            });
+
+
+                        }
+
+
+
+
+                    }
+
+
+                });}
 
 
 

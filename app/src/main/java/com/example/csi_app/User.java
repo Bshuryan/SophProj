@@ -108,7 +108,7 @@ public class User {
         MultiFormatWriter multiFormatWriter = new MultiFormatWriter();
         try {
 
-            bMatrix = multiFormatWriter.encode("This is a test", BarcodeFormat.QR_CODE, 350, 350);
+            bMatrix = multiFormatWriter.encode(User.currentUser.username, BarcodeFormat.QR_CODE, 350, 350);
             BarcodeEncoder barEncoder = new BarcodeEncoder();
             bMap = barEncoder.createBitmap(bMatrix);
             this.setQR(bMap);

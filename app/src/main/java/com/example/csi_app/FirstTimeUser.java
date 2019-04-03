@@ -81,6 +81,7 @@ public class FirstTimeUser extends AppCompatActivity {
 
             User u = new User(usn, securityQuestion, securityAnswer, emailAddress);
             User.accounts.add(u);
+            User.currentUser = u;
             u.generateQR();
 
             startActivity(new Intent(FirstTimeUser.this, newUserConfirm.class));
