@@ -19,11 +19,6 @@ import java.util.ArrayList;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 
-import android.app.AlertDialog;
-import android.content.DialogInterface;
-import android.content.pm.PackageManager;
-import android.os.Build;
-import android.os.Bundle;
 
 
 
@@ -55,16 +50,18 @@ public class CamScan extends AppCompatActivity {
         setContentView(R.layout.activity_cam_scan);
 
 
-        if(checkPermission()) {
+        //if(checkPermission()) {
 
-            setCam();
-            openCam();
+           setCam();
+           openCam();
+           setScan();
+
+
 
         }
-        //setScan();
 
 
-    }
+
 
 
     public void setCam() {
@@ -81,10 +78,6 @@ public class CamScan extends AppCompatActivity {
 
     public void openCam(){
 
-
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
 
                 liveCam.getHolder().addCallback(new SurfaceHolder.Callback() {
                     @Override
@@ -129,16 +122,9 @@ public class CamScan extends AppCompatActivity {
                     }
                 });}
 
-        });
-
-            }
 
 
         public void setScan(){
-
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
 
                 barcodeDetector.setProcessor(new Detector.Processor<Barcode>() {
                     @Override
@@ -175,8 +161,7 @@ public class CamScan extends AppCompatActivity {
                                 }
                             });} }});}
 
-        });
-        }
+
 
         public void reqCam(){
 
@@ -198,51 +183,6 @@ public class CamScan extends AppCompatActivity {
 
 
 
-    private boolean checkPermission() {
-        int currentAPIVersion = Build.VERSION.SDK_INT;
-        if (currentAPIVersion >= android.os.Build.VERSION_CODES.M) {
-
-            if (ContextCompat.checkSelfPermission(this, CAMERA) != PackageManager.PERMISSION_GRANTED) {
-                hasPerm = false;
-            }
-
-            if (hasPerm == false) {
-                if (ContextCompat.checkSelfPermission(this.getApplicationContext(), Manifest.permission.CAMERA) == PackageManager.PERMISSION_DENIED) {
-                    if (Build.VERSION.SDK_INT < 23) {
-                        Toast not_supported = Toast.makeText(this.getApplicationContext(), "Error: Must have SDK version 23 or higher!", Toast.LENGTH_LONG);
-                        not_supported.show();
-                    } else {
-                        requestPermissions(new String[]{Manifest.permission.CAMERA}, 100);
-
-                    }
-                    return false;
-
-                }
-
-
-            }
-
-        } return true;
-
-    }
-
-
-
-   /* public void onRequestPermissionsResult(int requestCode, String[] permissions,  int[] grantResults) {
-        switch (requestCode) {
-            case 100:
-                for (int result : grantResults) {
-                    if (result == PackageManager.PERMISSION_DENIED) {
-                        // Not all permissions granted. Show message to the user.
-                        return;
-                    }
-                }
-
-                // All permissions are granted. So, do the appropriate work now.
-                break;
-        }
-        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-    } */
 }
 
 
