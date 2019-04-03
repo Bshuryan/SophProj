@@ -86,13 +86,37 @@ public class Vault extends AppCompatActivity implements View.OnClickListener {
 
             nameFile.setView(nameOfFile);
             Uri u = data.getData();
-            String pathname = u.getPath();
+
+            final String pathname = u.getPath();
 
             nameFile.setMessage("Please choose a file name").setCancelable(false)
                     .setPositiveButton("Confirm", new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
                             filename = nameOfFile.getText().toString();
+
+                            if(User.currentUser.manyFiles >= 15)
+                            {
+                                Context context = getApplicationContext();
+                                Toast too_many_files_error = Toast.makeText(context, "Maximum number of files reached.", Toast.LENGTH_LONG);
+                                too_many_files_error.show();
+                            }
+                            else {
+                                User.currentUser.fileNames[User.currentUser.manyFiles] = filename;
+                                User.currentUser.manyFiles++;
+
+                                try {
+                                    storeFile(pathname, filename);
+                                }
+                                catch(IOException e)
+                                {
+                                    e.printStackTrace();
+                                }
+
+
+
+                            }
+
 
                         }
                     })
@@ -107,27 +131,6 @@ public class Vault extends AppCompatActivity implements View.OnClickListener {
 
 
 
-            if(User.currentUser.manyFiles >= 15)
-           {
-               Context context = getApplicationContext();
-               Toast too_many_files_error = Toast.makeText(context, "Maximum number of files reached.", Toast.LENGTH_LONG);
-               too_many_files_error.show();
-           }
-           else {
-                User.currentUser.fileNames[User.currentUser.manyFiles] = filename;
-                User.currentUser.manyFiles++;
-
-                try {
-                    storeFile(pathname, filename);
-                }
-                catch(IOException e)
-                {
-                    e.printStackTrace();
-                }
-
-
-
-            }
 
 
         }
@@ -153,6 +156,8 @@ public class Vault extends AppCompatActivity implements View.OnClickListener {
 
             Toast.makeText(getApplicationContext(), "File saved to "+ getFilesDir()+"/"+filename, Toast.LENGTH_LONG).show();
         }
+
+
 
         public void getFileList(){
 
