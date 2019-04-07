@@ -20,6 +20,7 @@
         android:focusable="true"
         android:onClick="forgotPassword"
         android:text="@string/scan_not_working"
+        android:textColor="@android:color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
@@ -34,6 +35,7 @@
         android:focusable="true"
         android:onClick="newUser"
         android:text="@string/first_time_user"
+        android:textColor="@android:color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
@@ -60,6 +62,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Camera"
+        android:background="@android:color/darker_gray"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         tools:layout_editor_absoluteY="446dp" />

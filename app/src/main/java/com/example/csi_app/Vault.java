@@ -7,12 +7,17 @@ import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.net.Uri;
+import android.widget.ListView;
 import android.widget.Toast;
 import android.content.Context;
+import java.lang.Object;
 import java.io.File;
+import android.widget.ListView;
 import android.app.AlertDialog.*;
 
 import org.apache.commons.io.FileUtils;
@@ -20,12 +25,14 @@ import org.apache.commons.io.FileUtils;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.util.List;
 
 public class Vault extends AppCompatActivity implements View.OnClickListener {
 
 
     ImageButton settingsButton;
     String filename;
+    ListView list;
 
 
     @Override
@@ -39,6 +46,21 @@ public class Vault extends AppCompatActivity implements View.OnClickListener {
 
         ImageButton uploadButton = (ImageButton)findViewById(R.id.upload);
         uploadButton.setOnClickListener(this);
+
+        String[] myFiles = User.currentUser.fileNames;
+
+        list = (ListView) findViewById(R.id.display);
+        ArrayAdapter adapter = new ArrayAdapter(this,android.R.layout.simple_list_item_1, myFiles);
+        list.setAdapter(adapter);
+
+        list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                String fileName = myFiles[position];
+                openFileInput(fileName);
+
+            }
+        });
 
 
     }
@@ -158,10 +180,7 @@ public class Vault extends AppCompatActivity implements View.OnClickListener {
         }
 
 
-
         public void getFileList(){
-
-            String[] myFiles = User.currentUser.fileNames;
 
 
             //add filenames to drop-down menu
