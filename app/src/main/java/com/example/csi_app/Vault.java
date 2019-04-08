@@ -10,6 +10,8 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.net.Uri;
@@ -24,6 +26,8 @@ import android.content.*;
 import java.io.*;
 import com.example.csi_app.FileUtil;
 import org.apache.commons.io.FileUtils;
+import android.widget.ListView;
+import java.util.List;
 
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
@@ -36,6 +40,8 @@ public class Vault extends AppCompatActivity implements View.OnClickListener {
 
     ImageButton settingsButton;
     String filename;
+
+    ListView list;
 
 
     @Override
@@ -50,10 +56,32 @@ public class Vault extends AppCompatActivity implements View.OnClickListener {
         ImageButton uploadButton = (ImageButton)findViewById(R.id.upload);
         uploadButton.setOnClickListener(this);
 
-        Button view = (Button)findViewById(R.id.view);
-        view.setOnClickListener(this);
+      /*  String[] myFiles = User.currentUser.fileNames;
 
+        list = (ListView) findViewById(R.id.display);
+        ArrayAdapter adapter = new ArrayAdapter(this,android.R.layout.simple_list_item_1, myFiles);
+        list.setAdapter(adapter);
 
+        list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                String fileName = User.currentUser.fileNames[position];
+                try {
+                    openFileInput(fileName);
+                }
+
+                catch(FileNotFoundException e)
+                {
+                    e.printStackTrace();
+                }
+
+            }
+        });
+
+       // Button view = (Button)findViewById(R.id.view);
+       // view.setOnClickListener(this);
+
+*/
     }
             public void onClick(View v) {
                 switch(v.getId()){
@@ -67,7 +95,7 @@ public class Vault extends AppCompatActivity implements View.OnClickListener {
                         uploadImage();
                         break;
 
-                    case R.id.view:
+                    /*case R.id.view:
                         try {
                             openFileInput(User.currentUser.fileNames[0]);
                         }
@@ -76,7 +104,7 @@ public class Vault extends AppCompatActivity implements View.OnClickListener {
                             e.printStackTrace();
                         }
 
-
+*/
             }
 
         }
