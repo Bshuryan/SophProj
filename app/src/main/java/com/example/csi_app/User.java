@@ -10,6 +10,8 @@ import com.google.zxing.WriterException;
 import com.google.zxing.common.BitMatrix;
 import com.journeyapps.barcodescanner.BarcodeEncoder;
 
+import java.util.ArrayList;
+
 import java.util.LinkedList;
 
 
@@ -25,7 +27,7 @@ public class User {
     String password;
     Bitmap QR;
     int id;
-    String[] fileNames;
+    ArrayList<String> fileNames;
     int manyFiles;
 
     public User(String username, String security_question, String security_answer, String email_address) {
@@ -35,7 +37,7 @@ public class User {
         this.security_answer = security_answer;
         QR = null;
         id = User.accounts.size() + 1;
-        fileNames = new String[15];
+        fileNames = new ArrayList<String>(15);
         manyFiles = 0;
 
     }

@@ -48,6 +48,7 @@
         android:layout_width="325dp"
         android:layout_height="648dp"
         tools:layout_editor_absoluteX="8dp"
-        tools:layout_editor_absoluteY="8dp" />
+        tools:layout_editor_absoluteY="800dp"
+        android:layout_marginTop = "75dp"/>
 
 </RelativeLayout>
