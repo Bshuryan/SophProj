@@ -4,9 +4,14 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.support.annotation.Nullable;
+import android.support.v4.content.CursorLoader;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
+import android.widget.Button;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.net.Uri;
@@ -14,18 +19,30 @@ import android.widget.Toast;
 import android.content.Context;
 import java.io.File;
 import android.app.AlertDialog.*;
-
+import android.provider.*;
+import android.database.Cursor;
+import android.os.*;
+import android.content.*;
+import java.io.*;
+import com.example.csi_app.FileUtil;
 import org.apache.commons.io.FileUtils;
+import android.widget.ListView;
+import java.util.ArrayList;
 
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import android.util.Log;
 
 public class Vault extends AppCompatActivity implements View.OnClickListener {
 
 
+
     ImageButton settingsButton;
     String filename;
+    FileInfo newFile;
+
+    ListView list;
 
 
     @Override
@@ -33,12 +50,35 @@ public class Vault extends AppCompatActivity implements View.OnClickListener {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_vault);
 
+        ImageButton v1_home_button = (ImageButton)findViewById(R.id.v1_home);
+        v1_home_button.setOnClickListener(this);
+
 
         ImageButton settingsButton = (ImageButton)findViewById(R.id.settingsButton1);
         settingsButton.setOnClickListener(this);
 
         ImageButton uploadButton = (ImageButton)findViewById(R.id.upload);
         uploadButton.setOnClickListener(this);
+
+        final ArrayList<String> myFiles = User.currentUser.fileNames;
+
+        list = (ListView) findViewById(R.id.display);
+
+
+        ArrayAdapter adapter = new ArrayAdapter(this,android.R.layout.simple_list_item_1, myFiles);
+        list.setAdapter(adapter);
+
+        list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                String fileName = myFiles.get(position);
+
+                   openFile(fileName);
+
+            }
+        });
+
+
 
 
     }
@@ -54,16 +94,20 @@ public class Vault extends AppCompatActivity implements View.OnClickListener {
                         uploadImage();
                         break;
 
+                    case R.id.v1_home:
+                        startActivity(new Intent(Vault.this, MainActivity.class));
+                        break;
             }
 
         }
 
         public void uploadImage()
         {
-            Intent i = new Intent();
+            Intent i = new Intent(Intent.ACTION_PICK);
             i.setAction(Intent.ACTION_OPEN_DOCUMENT);
             i.addCategory(Intent.CATEGORY_OPENABLE);
             i.setType("*/*");
+
             String[] fileTypes = {"application/pdf", "application/doc", "image/jpeg", "image/bmp",
                     "image/gif", "image/png", "image/jpg", "application/zip"};
             i.putExtra(Intent.EXTRA_MIME_TYPES, fileTypes);
@@ -85,14 +129,43 @@ public class Vault extends AppCompatActivity implements View.OnClickListener {
         if(requestCode== 101 && resultCode == RESULT_OK && data!=null) {
 
             nameFile.setView(nameOfFile);
-            Uri u = data.getData();
-            String pathname = u.getPath();
+            final Uri u = data.getData();
+
 
             nameFile.setMessage("Please choose a file name").setCancelable(false)
                     .setPositiveButton("Confirm", new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
+
                             filename = nameOfFile.getText().toString();
+                            newFile = new FileInfo(filename, u);
+
+
+
+                            if(User.currentUser.manyFiles >= 15)
+                            {
+                                Context context = getApplicationContext();
+                                Toast too_many_files_error = Toast.makeText(context, "Maximum number of files reached.", Toast.LENGTH_LONG);
+                                too_many_files_error.show();
+                            }
+                            else {
+                                User.currentUser.files.add(newFile);
+                                User.currentUser.fileNames.add(filename);
+                                User.currentUser.manyFiles++;
+
+
+                                try {
+                                    storeFile(u, filename);
+                                }
+                                catch(IOException e)
+                                {
+                                    e.printStackTrace();
+                                }
+
+
+
+                            }
+
 
                         }
                     })
@@ -107,27 +180,6 @@ public class Vault extends AppCompatActivity implements View.OnClickListener {
 
 
 
-            if(User.currentUser.manyFiles >= 15)
-           {
-               Context context = getApplicationContext();
-               Toast too_many_files_error = Toast.makeText(context, "Maximum number of files reached.", Toast.LENGTH_LONG);
-               too_many_files_error.show();
-           }
-           else {
-                User.currentUser.fileNames[User.currentUser.manyFiles] = filename;
-                User.currentUser.manyFiles++;
-
-                try {
-                    storeFile(pathname, filename);
-                }
-                catch(IOException e)
-                {
-                    e.printStackTrace();
-                }
-
-
-
-            }
 
 
         }
@@ -141,9 +193,10 @@ public class Vault extends AppCompatActivity implements View.OnClickListener {
     }
 
 
-    public void storeFile(String path, String filename) throws IOException{
+    public void storeFile(Uri u, String filename) throws IOException{
 
 
+            String path = FileUtil.getPath(this, u);
             FileOutputStream output = openFileOutput(filename, MODE_APPEND);
 
             File file = new File(path);
@@ -154,18 +207,36 @@ public class Vault extends AppCompatActivity implements View.OnClickListener {
             Toast.makeText(getApplicationContext(), "File saved to "+ getFilesDir()+"/"+filename, Toast.LENGTH_LONG).show();
         }
 
-        public void getFileList(){
 
-            String[] myFiles = User.currentUser.fileNames;
+        public void openFile(String filename){
 
 
-            //add filenames to drop-down menu
-            //on click of one of the options it should get the text and open the file
-            //openFileInput(INSERT FILENAME HERE);
+
+            FileInfo selected = User.currentUser.searchFile(filename);
+
+            String type = getContentResolver().getType(selected.getUri());
+            Intent intent = new Intent(Intent.ACTION_VIEW);
+            intent.setDataAndType(selected.getUri(), type);
+            intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
+            startActivity(intent);
+
+
         }
 
 
-}
+
+
+
+
+
+
+
+
+
+
+    }
+
+
 
 
 

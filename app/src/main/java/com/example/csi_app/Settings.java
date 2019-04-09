@@ -109,7 +109,7 @@ public class Settings extends AppCompatActivity {
                 .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        //remove account
+                        User.accounts.remove(this);
                     }
                 });
     }

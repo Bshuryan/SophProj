@@ -10,6 +10,8 @@ import com.google.zxing.WriterException;
 import com.google.zxing.common.BitMatrix;
 import com.journeyapps.barcodescanner.BarcodeEncoder;
 
+import java.util.ArrayList;
+
 import java.util.LinkedList;
 
 
@@ -25,8 +27,10 @@ public class User {
     String password;
     Bitmap QR;
     int id;
-    String[] fileNames;
+    ArrayList<FileInfo> files;
+    ArrayList<String> fileNames;
     int manyFiles;
+    private ArrayList<FileInfo> copy;
 
     public User(String username, String security_question, String security_answer, String email_address) {
         this.email_address = email_address;
@@ -35,7 +39,8 @@ public class User {
         this.security_answer = security_answer;
         QR = null;
         id = User.accounts.size() + 1;
-        fileNames = new String[15];
+        files = new ArrayList<FileInfo>(15);
+        fileNames = new ArrayList<String>(15);
         manyFiles = 0;
 
     }
@@ -108,7 +113,7 @@ public class User {
         MultiFormatWriter multiFormatWriter = new MultiFormatWriter();
         try {
 
-            bMatrix = multiFormatWriter.encode("This is a test", BarcodeFormat.QR_CODE, 350, 350);
+            bMatrix = multiFormatWriter.encode(User.currentUser.username, BarcodeFormat.QR_CODE, 350, 350);
             BarcodeEncoder barEncoder = new BarcodeEncoder();
             bMap = barEncoder.createBitmap(bMatrix);
             this.setQR(bMap);
@@ -135,6 +140,28 @@ public class User {
         }
         return target;
     }
+
+
+    public FileInfo searchFile(String s){
+
+        copy = User.currentUser.files;
+        FileInfo target = null;
+
+
+        for(FileInfo temp : copy){
+
+            boolean b = s.equalsIgnoreCase(temp.getName());
+            if (b) {
+                target = temp;
+                break;
+
+            }
+
+        }
+        return target;
+
+    }
+
 }
 
 

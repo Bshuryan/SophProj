@@ -22,6 +22,8 @@ import com.google.android.gms.vision.Detector;
 import com.google.android.gms.vision.barcode.Barcode;
 import com.google.android.gms.vision.barcode.BarcodeDetector;
 
+import static android.Manifest.permission.CAMERA;
+
 
 
 import java.io.IOException;
@@ -34,24 +36,25 @@ public class CamScan extends AppCompatActivity {
     CameraSource cam;
     BarcodeDetector barcodeDetector;
     TextView info;
-
+    private String[] neededPermissions = new String[]{CAMERA};
+    boolean hasPerm = false;
+    String s;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cam_scan);
 
-        //reqCam();
+
+           setCam();
+           openCam();
+           setScan();
 
 
-        setCam();
-        openCam();
+
+        }
 
 
-        setScan();
-
-
-    }
 
 
 
@@ -70,10 +73,6 @@ public class CamScan extends AppCompatActivity {
     public void openCam(){
 
 
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
-
                 liveCam.getHolder().addCallback(new SurfaceHolder.Callback() {
                     @Override
                     public void surfaceCreated(SurfaceHolder holder) {
@@ -87,7 +86,7 @@ public class CamScan extends AppCompatActivity {
                                 // to handle the case where the user grants the permission. See the documentation
                                 // for ActivityCompat#requestPermissions for more details.
 
-                                requestPermissions(new String[]{Manifest.permission.CAMERA}, 1);
+                                reqCam();
 
                                 return;
                             }
@@ -107,7 +106,6 @@ public class CamScan extends AppCompatActivity {
                     public void surfaceChanged(SurfaceHolder holder, int format, int width, int height) {
 
 
-
                     }
 
                     @Override
@@ -118,16 +116,9 @@ public class CamScan extends AppCompatActivity {
                     }
                 });}
 
-        });
-
-            }
 
 
         public void setScan(){
-
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
 
                 barcodeDetector.setProcessor(new Detector.Processor<Barcode>() {
                     @Override
@@ -145,27 +136,41 @@ public class CamScan extends AppCompatActivity {
                             info.post(new Runnable() {
                                 @Override
                                 public void run() {
-                                    String s = codes.valueAt(0).displayValue;
-                                    info.setText("Welcome " +s);
+                                    s = codes.valueAt(0).displayValue;
+                                    info.setText("Welcome " + s);
 
-                                    User u = User.searchUsn(s);
 
-                                    if (u != null) {
+                                   User u = User.searchUsn(s);
+
+
+                                   if (u != null) {
+
+
                                         User.currentUser = u;
                                         int id = User.currentUser.getId();
 
                                         if (id == 1) {
-                                            startActivity(new Intent(CamScan.this, Vault.class));
+                                           startActivity(new Intent(CamScan.this, Vault.class));
                                         } else if (id == 2) {
                                             startActivity(new Intent(CamScan.this, Vault2.class));
                                         } else
                                             startActivity(new Intent(CamScan.this, Vault3.class));
-                                    }
+                                   }
                                 }
-                            });} }});}
+                            });
 
-        });
-        }
+
+                        }
+
+
+
+
+                    }
+
+
+                });}
+
+
 
         public void reqCam(){
 
@@ -176,7 +181,7 @@ public class CamScan extends AppCompatActivity {
                 }
 
                 else {
-                    requestPermissions(new String[]{Manifest.permission.CAMERA}, 1);
+                    requestPermissions(new String[]{Manifest.permission.CAMERA}, 100);
                 }
 
             }
@@ -186,7 +191,19 @@ public class CamScan extends AppCompatActivity {
 
 
 
+
 }
+
+
+
+
+
+
+
+
+
+
+
 
 
 
