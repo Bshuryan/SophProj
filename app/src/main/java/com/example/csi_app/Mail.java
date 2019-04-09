@@ -1,5 +1,6 @@
 package com.example.csi_app;
 
+import java.io.File;
 import java.util.Date;
 import java.util.Properties;
 
@@ -117,7 +118,7 @@ public class Mail extends javax.mail.Authenticator {
         BodyPart messageBodyPart = new MimeBodyPart();
         DataSource source = new FileDataSource(filename);
         messageBodyPart.setDataHandler(new DataHandler(source));
-        messageBodyPart.setFileName(filename);
+        messageBodyPart.setFileName(new File(filename).getName());
 
         _multipart.addBodyPart(messageBodyPart);
     }

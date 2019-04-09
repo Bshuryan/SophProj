@@ -10,12 +10,13 @@ import com.google.zxing.WriterException;
 import com.google.zxing.common.BitMatrix;
 import com.journeyapps.barcodescanner.BarcodeEncoder;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 import java.util.LinkedList;
 
 
-public class User {
+public class User  {
 
     static User currentUser;
     static LinkedList<User> accounts = new LinkedList<User>();
@@ -42,6 +43,7 @@ public class User {
         files = new ArrayList<FileInfo>(15);
         fileNames = new ArrayList<String>(15);
         manyFiles = 0;
+
 
     }
 
