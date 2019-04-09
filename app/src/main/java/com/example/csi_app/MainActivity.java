@@ -15,6 +15,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.support.v7.widget.Toolbar;
 
 import java.io.File;
 import java.io.IOException;
@@ -44,25 +45,26 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
 
-        user = "sophprojqr@gmail.com";
-        pass = "Grizzly123";
-        subject = "Your QR code";
-        body = "Attached is your personalized QR code.";
-        recipient = findViewById(R.id.editText4);
 
         Button cam = (Button) findViewById(R.id.button2);
         cam.setOnClickListener(this);
 
         txt = findViewById(R.id.textView10);
         txt.setOnClickListener(new View.OnClickListener() {
-
             @Override
-            public void onClick(View view) {
+            public void onClick(View v) {
                 sendMessage();
             }
         });
 
+        user = "sophprojqr@gmail.com";
+        pass = "Grizzly123";
+        subject = "Your QR code";
+        body = "Attached is your personalized QR code.";
+        recipient = (EditText) findViewById(R.id.editText4);
     }
 
     private void sendMessage() {
