@@ -84,7 +84,9 @@ public class FirstTimeUser extends AppCompatActivity {
             User.currentUser = u;
             u.generateQR();
 
-            startActivity(new Intent(FirstTimeUser.this, newUserConfirm.class));
+            Intent intent = new Intent(this, newUserConfirm.class);
+
+            startActivity(intent);
 
 
         }
@@ -92,6 +94,7 @@ public class FirstTimeUser extends AppCompatActivity {
 
 
     }
+
 
     public boolean checkEmpty()
     {
