@@ -40,6 +40,7 @@ public class Vault extends AppCompatActivity implements View.OnClickListener {
 
     ImageButton settingsButton;
     String filename;
+    FileInfo newFile;
 
     ListView list;
 
@@ -70,8 +71,8 @@ public class Vault extends AppCompatActivity implements View.OnClickListener {
                 String fileName = myFiles.get(position);
                 //try {
 
-                    //openFileInput(fileName);
-                    openFile(filename);
+
+                   openFile(fileName);
                // }
 
                /* catch(FileNotFoundException e)
@@ -150,7 +151,9 @@ public class Vault extends AppCompatActivity implements View.OnClickListener {
                         public void onClick(DialogInterface dialog, int which) {
 
                             filename = nameOfFile.getText().toString();
-                            //filename = getFileName(u);
+                            newFile = new FileInfo(filename, u);
+
+
 
                             if(User.currentUser.manyFiles >= 15)
                             {
@@ -159,8 +162,10 @@ public class Vault extends AppCompatActivity implements View.OnClickListener {
                                 too_many_files_error.show();
                             }
                             else {
+                                User.currentUser.files.add(newFile);
                                 User.currentUser.fileNames.add(filename);
                                 User.currentUser.manyFiles++;
+
 
                                 try {
                                     storeFile(u, filename);
@@ -216,28 +221,26 @@ public class Vault extends AppCompatActivity implements View.OnClickListener {
         }
 
 
+        public void openFile(String filename){
 
 
 
-    public static String getFileName(Uri uri) {
-        if (uri == null) return null;
-        String fileName = null;
-        String path = uri.getPath();
-        int cut = path.lastIndexOf('/');
-        if (cut != -1) {
-            fileName = path.substring(cut + 1);
+            FileInfo selected = User.currentUser.searchFile(filename);
+
+            String type = getContentResolver().getType(selected.getUri());
+            Intent intent = new Intent(Intent.ACTION_VIEW);
+            intent.setDataAndType(selected.getUri(), type);
+            intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
+            startActivity(intent);
+
+
         }
-        return fileName;
-    }
 
 
-    public void openFile(String filename){
 
-        Intent i = new Intent(Intent.ACTION_OPEN_DOCUMENT);
-        i.addCategory(Intent.CATEGORY_OPENABLE);
-        i.setType("*/*");
-        startActivityForResult(i, 42);
-    }
+
+
+
 
 
 

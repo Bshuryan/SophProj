@@ -27,8 +27,10 @@ public class User {
     String password;
     Bitmap QR;
     int id;
+    ArrayList<FileInfo> files;
     ArrayList<String> fileNames;
     int manyFiles;
+    private ArrayList<FileInfo> copy;
 
     public User(String username, String security_question, String security_answer, String email_address) {
         this.email_address = email_address;
@@ -37,6 +39,7 @@ public class User {
         this.security_answer = security_answer;
         QR = null;
         id = User.accounts.size() + 1;
+        files = new ArrayList<FileInfo>(15);
         fileNames = new ArrayList<String>(15);
         manyFiles = 0;
 
@@ -137,6 +140,28 @@ public class User {
         }
         return target;
     }
+
+
+    public FileInfo searchFile(String s){
+
+        copy = User.currentUser.files;
+        FileInfo target = null;
+
+
+        for(FileInfo temp : copy){
+
+            boolean b = s.equalsIgnoreCase(temp.getName());
+            if (b) {
+                target = temp;
+                break;
+
+            }
+
+        }
+        return target;
+
+    }
+
 }
 
 
