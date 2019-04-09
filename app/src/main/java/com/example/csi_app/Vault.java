@@ -50,6 +50,9 @@ public class Vault extends AppCompatActivity implements View.OnClickListener {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_vault);
 
+        ImageButton v1_home_button = (ImageButton)findViewById(R.id.v1_home);
+        v1_home_button.setOnClickListener(this);
+
 
         ImageButton settingsButton = (ImageButton)findViewById(R.id.settingsButton1);
         settingsButton.setOnClickListener(this);
@@ -69,22 +72,13 @@ public class Vault extends AppCompatActivity implements View.OnClickListener {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 String fileName = myFiles.get(position);
-                //try {
-
 
                    openFile(fileName);
-               // }
 
-               /* catch(FileNotFoundException e)
-                {
-                    e.printStackTrace();
-                }
-*/
             }
         });
 
-       // Button view = (Button)findViewById(R.id.view);
-       // view.setOnClickListener(this);
+
 
 
     }
@@ -100,16 +94,9 @@ public class Vault extends AppCompatActivity implements View.OnClickListener {
                         uploadImage();
                         break;
 
-                    /*case R.id.view:
-                        try {
-                            openFileInput(User.currentUser.fileNames[0]);
-                        }
-
-                        catch(FileNotFoundException e){
-                            e.printStackTrace();
-                        }
-
-*/
+                    case R.id.v1_home:
+                        startActivity(new Intent(Vault.this, MainActivity.class));
+                        break;
             }
 
         }
