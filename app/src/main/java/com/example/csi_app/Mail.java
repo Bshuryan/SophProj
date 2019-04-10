@@ -52,7 +52,7 @@ public class Mail extends javax.mail.Authenticator {
         _body = "";
 
         _debuggable = false;
-        _auth = true; // smtp authentication - default on
+        _auth = true;
 
         _multipart = new MimeMultipart();
 

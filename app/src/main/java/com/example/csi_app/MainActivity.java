@@ -1,5 +1,6 @@
 package com.example.csi_app;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.net.Uri;
@@ -7,6 +8,7 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
+import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -15,7 +17,6 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.support.v7.widget.Toolbar;
 
 import java.io.File;
 import java.io.IOException;
@@ -33,7 +34,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private String mCurrentPhotoPath;
     private ImageView mImageView;
     private static final String TAG = "MainActivity";
-    private TextView txt;
     private String user;
     private String pass;
     private String subject;
@@ -45,17 +45,17 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
+
 
 
         Button cam = (Button) findViewById(R.id.button2);
         cam.setOnClickListener(this);
 
-        txt = findViewById(R.id.textView10);
-        txt.setOnClickListener(new View.OnClickListener() {
+
+        FloatingActionButton email = (FloatingActionButton) findViewById(R.id.email);
+        email.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
+            public void onClick(View view) {
                 sendMessage();
             }
         });
@@ -80,7 +80,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     public void displayMessage(String message) {
-        Snackbar.make(findViewById(R.id.textView10), message, Snackbar.LENGTH_LONG)
+        Snackbar.make(findViewById(R.id.email), message, Snackbar.LENGTH_LONG)
                 .setAction("Action", null).show();
     }
 
