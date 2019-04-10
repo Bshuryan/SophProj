@@ -1,38 +1,27 @@
 package com.example.csi_app;
 
-import android.app.AlertDialog;
+import android.app.AlertDialog.Builder;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.support.annotation.Nullable;
-import android.support.v4.content.CursorLoader;
-import android.support.v7.app.AppCompatActivity;
+import android.net.Uri;
 import android.os.Bundle;
-import android.util.Log;
+import android.support.annotation.Nullable;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
-import android.widget.Button;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ImageButton;
-import android.net.Uri;
-import android.widget.Toast;
-import android.content.Context;
-import java.io.File;
-import android.app.AlertDialog.*;
-import android.provider.*;
-import android.database.Cursor;
-import android.os.*;
-import android.content.*;
-import java.io.*;
-import com.example.csi_app.FileUtil;
-import org.apache.commons.io.FileUtils;
 import android.widget.ListView;
-import java.util.ArrayList;
+import android.widget.Toast;
 
-import java.io.FileNotFoundException;
+import org.apache.commons.io.FileUtils;
+
+import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import android.util.Log;
+import java.util.ArrayList;
 
 public class Vault3 extends AppCompatActivity implements View.OnClickListener {
 
@@ -94,7 +83,7 @@ public class Vault3 extends AppCompatActivity implements View.OnClickListener {
         switch(v.getId()){
 
             case R.id.settingsButton1:
-                Intent startIntent = new Intent(getApplicationContext(),Settings.class);
+                Intent startIntent = new Intent(getApplicationContext(), Settings.class);
                 startActivity(startIntent);
                 break;
 
@@ -130,7 +119,7 @@ public class Vault3 extends AppCompatActivity implements View.OnClickListener {
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
-        AlertDialog.Builder nameFile = new AlertDialog.Builder(Vault3.this);
+        Builder nameFile = new Builder(Vault3.this);
 
         final EditText nameOfFile = new EditText(Vault3.this);
 

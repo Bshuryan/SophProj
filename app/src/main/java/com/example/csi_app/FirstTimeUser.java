@@ -1,23 +1,13 @@
 package com.example.csi_app;
 
+import android.content.Context;
 import android.content.Intent;
-import android.graphics.Bitmap;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
+import android.util.Patterns;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
-import android.content.Context;
-import android.widget.Button;
-import android.view.View.*;
-import android.util.Patterns;
-
-import com.google.zxing.BarcodeFormat;
-import com.google.zxing.MultiFormatWriter;
-import com.google.zxing.WriterException;
-import com.google.zxing.common.BitMatrix;
-
-import java.util.LinkedList;
 
 public class FirstTimeUser extends AppCompatActivity {
 
@@ -142,7 +132,7 @@ public class FirstTimeUser extends AppCompatActivity {
         EditText t = (EditText)findViewById(edit_text_ids[3]);
         em = t.getText().toString();
 
-        return android.util.Patterns.EMAIL_ADDRESS.matcher(em).matches();
+        return Patterns.EMAIL_ADDRESS.matcher(em).matches();
     }
 
 
