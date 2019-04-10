@@ -1,5 +1,6 @@
 package com.example.csi_app;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.net.Uri;
@@ -7,6 +8,7 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
+import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -32,7 +34,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private String mCurrentPhotoPath;
     private ImageView mImageView;
     private static final String TAG = "MainActivity";
-    private TextView txt;
     private String user;
     private String pass;
     private String subject;
@@ -45,24 +46,25 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        user = "sophprojqr@gmail.com";
-        pass = "Grizzly123";
-        subject = "Your QR code";
-        body = "Attached is your personalized QR code.";
-        recipient = findViewById(R.id.editText4);
+
 
         Button cam = (Button) findViewById(R.id.button2);
         cam.setOnClickListener(this);
 
-        txt = findViewById(R.id.textView10);
-        txt.setOnClickListener(new View.OnClickListener() {
 
+        FloatingActionButton email = (FloatingActionButton) findViewById(R.id.email);
+        email.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 sendMessage();
             }
         });
 
+        user = "sophprojqr@gmail.com";
+        pass = "Grizzly123";
+        subject = "Your QR code";
+        body = "Attached is your personalized QR code.";
+        recipient = (EditText) findViewById(R.id.editText4);
     }
 
     private void sendMessage() {
@@ -78,7 +80,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     public void displayMessage(String message) {
-        Snackbar.make(findViewById(R.id.textView10), message, Snackbar.LENGTH_LONG)
+        Snackbar.make(findViewById(R.id.email), message, Snackbar.LENGTH_LONG)
                 .setAction("Action", null).show();
     }
 

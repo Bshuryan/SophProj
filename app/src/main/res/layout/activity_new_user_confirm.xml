@@ -68,10 +68,34 @@
         android:layout_marginBottom="84dp"
         android:clickable="true"
         android:focusable="true"
+        android:keepScreenOn="false"
+        android:onClick="onClick"
         android:text="Click here to receive an email of your QR code as an attachment."
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/email"
+        android:layout_width="206dp"
+        android:layout_height="54dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="593dp"
+        android:layout_marginEnd="189dp"
+        android:layout_marginRight="189dp"
+        android:layout_marginBottom="84dp"
+        android:clickable="true"
+        android:focusable="true"
+        android:keepScreenOn="false"
+        android:onClick="onClick"
+        android:text="Click here to receive an email of your QR code as an attachment."
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:src="@android:drawable/ic_dialog_email"/>
+
 </android.support.constraint.ConstraintLayout>
 
