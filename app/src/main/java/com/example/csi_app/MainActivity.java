@@ -1,6 +1,6 @@
 package com.example.csi_app;
 
-import android.annotation.SuppressLint;
+
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.net.Uri;
@@ -8,7 +8,6 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
-import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -16,7 +15,6 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.TextView;
 
 import java.io.File;
 import java.io.IOException;
@@ -52,13 +50,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         cam.setOnClickListener(this);
 
 
-        FloatingActionButton email = (FloatingActionButton) findViewById(R.id.email);
-        email.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                sendMessage();
-            }
-        });
+
 
         user = "sophprojqr@gmail.com";
         pass = "Grizzly123";
@@ -80,7 +72,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     public void displayMessage(String message) {
-        Snackbar.make(findViewById(R.id.email), message, Snackbar.LENGTH_LONG)
+        Snackbar.make(findViewById(R.id.textView10), message, Snackbar.LENGTH_LONG)
                 .setAction("Action", null).show();
     }
 
