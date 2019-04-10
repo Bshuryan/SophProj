@@ -32,13 +32,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private Bitmap mImageBitmap;
     private String mCurrentPhotoPath;
     private ImageView mImageView;
-    TextView txt;
     private static final String TAG = "MainActivity";
-    private String user;
-    private String pass;
-    private String subject;
-    private String body;
-    private EditText recipient;
+
 
 
     @Override
@@ -47,42 +42,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         setContentView(R.layout.activity_main);
 
 
-
         Button cam = (Button) findViewById(R.id.button2);
         cam.setOnClickListener(this);
 
-        txt =(TextView) findViewById(R.id.textView10);
-        txt.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                sendMessage();
-            }
-        });
 
 
-        user = "sophprojqr@gmail.com";
-        pass = "Grizzly123";
-        subject = "Your QR code";
-        body = "Attached is your personalized QR code.";
-        recipient = (EditText) findViewById(R.id.editText4);
     }
 
-    public void sendMessage() {
-        String[] recipients = { recipient.getText().toString() };
-        SendEmailAsyncTask email = new SendEmailAsyncTask();
-        email.activity = this;
-        email.m = new Mail(user, pass);
-        email.m.set_from(user);
-        email.m.setBody(body);
-        email.m.set_to(recipients);
-        email.m.set_subject(subject);
-        email.execute();
-    }
 
-    public void displayMessage(String message) {
-        Snackbar.make(findViewById(R.id.textView10), message, Snackbar.LENGTH_LONG)
-                .setAction("Action", null).show();
-    }
 
     public void openCamera(View view) {
         Intent cameraIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
@@ -165,40 +132,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
 }
 
-class SendEmailAsyncTask extends AsyncTask<Void, Void, Boolean> {
-    Mail m;
-    MainActivity activity;
 
-    public SendEmailAsyncTask() {
-    }
 
-    @Override
-    protected Boolean doInBackground(Void... params) {
-        try {
-            if (m.send()) {
-                activity.displayMessage("Email sent.");
-            } else {
-                activity.displayMessage("Email failed to send.");
-            }
-
-            return true;
-        } catch (AuthenticationFailedException e) {
-            Log.e(SendEmailAsyncTask.class.getName(), "Bad account details");
-            e.printStackTrace();
-            activity.displayMessage("Authentication failed.");
-            return false;
-        } catch (MessagingException e) {
-            Log.e(SendEmailAsyncTask.class.getName(), "Email failed");
-            e.printStackTrace();
-            activity.displayMessage("Email failed to send.");
-            return false;
-        } catch (Exception e) {
-            e.printStackTrace();
-            activity.displayMessage("Unexpected error occurred.");
-            return false;
-        }
-    }
-}
 
 
 
