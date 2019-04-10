@@ -1,16 +1,14 @@
 package com.example.csi_app;
 
 import android.content.DialogInterface;
+import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.TextView;
-
-import org.w3c.dom.Text;
 
 public class Settings extends AppCompatActivity {
     CheckBox changeUsername,changeEmail,changePassword,changeQuestion,changeAnswer;
