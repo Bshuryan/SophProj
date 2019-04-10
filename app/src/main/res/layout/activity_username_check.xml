@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/gradient"
+    android:background="@drawable/vaultit"
     tools:context=".UsernameCheck"
     tools:targetApi="@android:color/holo_blue_dark">
 
@@ -37,7 +37,7 @@
         android:layout_marginRight="147dp"
         android:layout_marginBottom="506dp"
         android:text="Enter your username"
-        android:textColor="@android:color/white"
+        android:textColor="@android:color/black"
         android:textSize="25dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -87,7 +87,7 @@
         android:layout_marginBottom="329dp"
         android:clickable="false"
         android:text="Next"
-        android:textColor="@android:color/white"
+        android:textColor="@android:color/black"
         android:textSize="18dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
