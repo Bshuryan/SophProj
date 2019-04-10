@@ -9,22 +9,20 @@
     tools:targetApi="@android:color/holo_blue_dark">
 
 
-
     <TextView
         android:id="@+id/scan_not_working"
         android:layout_width="120dp"
-        android:layout_height="24dp"
-        android:layout_marginStart="27dp"
-        android:layout_marginLeft="27dp"
-        android:layout_marginBottom="26dp"
+        android:layout_height="30dp"
+        android:layout_marginBottom="24dp"
         android:clickable="true"
         android:focusable="true"
         android:onClick="forgotPassword"
         android:text="@string/scan_not_working"
         android:textColor="@android:color/black"
         android:textStyle="bold"
+        app:layout_constraintBaseline_toBaselineOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        tools:layout_editor_absoluteX="27dp" />
 
     <TextView
         android:id="@+id/new_user"
@@ -78,14 +76,5 @@
         tools:layout_editor_absoluteX="37dp"
         tools:layout_editor_absoluteY="39dp" />
 
-    <TextView
-        android:id="@+id/mail"
-        android:layout_width="wrap_content"
-        android:layout_height="64dp"
-        android:layout_marginTop="560dp"
-        app:layout_constraintBaseline_toBaselineOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
 
 </android.support.constraint.ConstraintLayout>

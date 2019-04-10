@@ -15,6 +15,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import java.io.File;
 import java.io.IOException;
@@ -31,6 +32,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private Bitmap mImageBitmap;
     private String mCurrentPhotoPath;
     private ImageView mImageView;
+    TextView txt;
     private static final String TAG = "MainActivity";
     private String user;
     private String pass;
@@ -49,7 +51,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         Button cam = (Button) findViewById(R.id.button2);
         cam.setOnClickListener(this);
 
-
+        txt =(TextView) findViewById(R.id.textView10);
+        txt.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                sendMessage();
+            }
+        });
 
 
         user = "sophprojqr@gmail.com";
@@ -59,7 +67,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         recipient = (EditText) findViewById(R.id.editText4);
     }
 
-    private void sendMessage() {
+    public void sendMessage() {
         String[] recipients = { recipient.getText().toString() };
         SendEmailAsyncTask email = new SendEmailAsyncTask();
         email.activity = this;
