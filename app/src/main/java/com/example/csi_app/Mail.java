@@ -118,7 +118,7 @@ public class Mail extends javax.mail.Authenticator {
         BodyPart messageBodyPart = new MimeBodyPart();
         DataSource source = new FileDataSource(filename);
         messageBodyPart.setDataHandler(new DataHandler(source));
-        messageBodyPart.setFileName(new File(filename).getName());
+        messageBodyPart.setFileName(filename);
 
         _multipart.addBodyPart(messageBodyPart);
     }
