@@ -65,8 +65,10 @@
         android:id="@+id/display"
         android:layout_width="390dp"
         android:layout_height="648dp"
+        android:layout_below="@+id/settingsButton1"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="-16dp"
         tools:layout_editor_absoluteX="8dp"
-        tools:layout_editor_absoluteY="800dp"
-        android:layout_marginTop = "75dp"/>
+        tools:layout_editor_absoluteY="800dp" />
 
 </RelativeLayout>
